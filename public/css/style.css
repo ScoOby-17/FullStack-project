@@ -1,0 +1,243 @@
+/* GLOBAL */
+body {
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+.navbar {
+    height: 5.5rem;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222 !important;
+    font-weight: 500;
+}
+
+/* FOOTER */
+.f-info {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222;
+    margin: 0 10px;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: auto;
+}
+/* footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+} */
+
+/* LISTING CARDS */
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+    border-radius: 16px !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+    border-radius: 16px 16px 0 0 !important;
+    width: 100% !important;
+    height: 220px;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 10px 5px !important;
+}
+
+.card-text {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* SHOW PAGE */
+.show-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+/* Show Card */
+.show-card {
+    width: 650px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.show-card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* Image */
+.show-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+/* Body */
+.show-body {
+    padding: 25px;
+}
+
+/* Title */
+.title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Description */
+.description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Info Row */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Price */
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff385c;
+}
+
+/* Location */
+.location {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 12px;
+}
+
+/* Edit Button */
+.edit-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+/* Delete Button */
+.delete-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #ff385c;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #d62d4a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+    .show-card {
+        width: 90%;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+/* error 404 file  */
+.error-container {
+    text-align: center;
+    margin: 80px auto;
+    padding: 40px;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.error-container h1 {
+    font-size: 4rem;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+}
+
+.error-container h2 {
+    font-size: 1.5rem;
+    color: #555;
+}

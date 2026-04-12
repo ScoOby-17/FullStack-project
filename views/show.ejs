@@ -1,0 +1,38 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> -->
+
+<% layout('layouts/boilerplate.ejs') -%>
+
+<div class="show-container">
+
+    <div class="show-card">
+        <img src="<%= listing.image.url %>" class="show-img" alt="listing image">
+
+        <div class="show-body">
+            <h2 class="title"><%= listing.title %></h2>
+
+            <p class="description"><%= listing.description %></p>
+
+            <p class="price">₹ <%= listing.price.toLocaleString("en-IN") %></p>
+
+            <p class="location">
+                📍 <%= listing.location %>, <%= listing.country %>
+            </p>
+
+            <div class="btn-group">
+                <a href="/listings/<%= listing._id %>/edit" class="edit-btn">Edit</a>
+
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+                    <button class="delete-btn">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- </html> -->

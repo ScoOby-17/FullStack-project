@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>WanserLust</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link" href="/listings">All Listings</a>
+        <a class="nav-link" href="/new">Add New Listing</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section>
+    <div class="row"></div>
+    <div class="col-8 offset-2">
+    <h2>Write inforamtion about Listing</h2>
+    
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST">
+
+        <div class="mb-3">
+            <label for="title" class="form-lable">Title</label>
+            <input type="text" 
+                value="<%= listing.title %>"
+                name="listing[title]"
+                class="form-control"
+            />
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-lable">Description</label>
+            <textarea name="listing[description]" 
+                type="text" 
+                class="form-control"><%= listing.description %></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-lable">Image URL</label>
+            <input type="text" 
+                name="listing[image]" 
+                class="form-control"
+                value="<%= listing.image%>"
+            />
+        </div>
+        
+        <div class="mb-3">
+            <label for="price" class="form-lable">Price</label>
+            <input type="text" 
+                name="listing[price]"
+                class="form-control" 
+                value="<%= listing.price %>"
+            />
+        </div>
+        
+        <div class="mb-3">
+            <label for="location" class="form-lable">Location</label>
+            <input type="text" 
+                value="<%=listing.location%>"
+                name="listing[location]" 
+                class="form-control" 
+            />
+        </div>
+        
+        <div class="mb-3">
+            <label for="country" class="form-lable">Country</label>
+            <input type="text" 
+                value="<%=listing.country%>"
+                name="listing[country]" 
+                class="form-control"
+            />
+        </div>
+        
+        <br><br>
+
+        <button style="background-color: #fe424d; color: aliceblue; border-radius: 3px ; border: #fe424d;">Edit</button>
+    </form>
+    </div>
+    </div>
+
+</section>
+
+    <!-- footer -->
+
+    <footer>
+    <div class="f-info">
+        <div class="f-info-socials">
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            
+        </div>
+        <div>Warderlust Private Limited <i class="fa-solid fa-copyright"></i></div>
+        <div class="f-info-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">terms</a>
+        </div>
+    </div>
+    </footer>
+
+</body>
+
+
+</html>
