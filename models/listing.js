@@ -32,7 +32,23 @@ const ListingSchema = new Schema({
     country : {
         type : String,
         required : true
-    }
+    },
+    reviews :[
+        {
+          type : Schema.Types.ObjectId,
+          ref : "Review"
+        }
+    ]
+});
+
+const Review = require("./review"); // import review model
+
+ListingSchema.post("findOneAndDelete", async (listing) => {
+  if (listing) {
+    await Review.deleteMany({
+      _id: { $in: listing.reviews } // delete all related reviews
+    });
+  }
 });
 
 const Listing = mongoose.model("Listing",ListingSchema);

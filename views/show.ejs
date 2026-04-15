@@ -9,30 +9,100 @@
 <% layout('layouts/boilerplate.ejs') -%>
 
 <div class="show-container">
+  <div class="show-card">
+    <img src="<%= listing.image.url %>" class="show-img" alt="listing image" />
 
-    <div class="show-card">
-        <img src="<%= listing.image.url %>" class="show-img" alt="listing image">
+    <div class="show-body">
+      <h2 class="title"><%= listing.title %></h2>
 
-        <div class="show-body">
-            <h2 class="title"><%= listing.title %></h2>
+      <p class="description"><%= listing.description %></p>
 
-            <p class="description"><%= listing.description %></p>
+      <p class="price">₹ <%= listing.price.toLocaleString("en-IN") %></p>
 
-            <p class="price">₹ <%= listing.price.toLocaleString("en-IN") %></p>
+      <p class="location">📍 <%= listing.location %>, <%= listing.country %></p>
 
-            <p class="location">
-                📍 <%= listing.location %>, <%= listing.country %>
-            </p>
+      <div class="btn-group">
+        <a href="/listings/<%= listing._id %>/edit" class="edit-btn">Edit</a>
 
-            <div class="btn-group">
-                <a href="/listings/<%= listing._id %>/edit" class="edit-btn">Edit</a>
+        <form
+          action="/listings/<%= listing._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="delete-btn">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-                    <button class="delete-btn">Delete</button>
-                </form>
-            </div>
-        </div>
+<!-- Reviews Form -->
+
+<div style="display: flex; justify-content: center; margin-top: 40px">
+  <form action="/listings/<%= listing._id %>/reviews" method="post"
+    style="
+      width: 33.33%;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    "
+  >
+    <h4 style="text-align: center">Leave a Review</h4>
+
+    <div>
+      <label for="rating">Rating</label>
+      <input type="range" min="1" max="5" style="width: 100%" name="rating"/>
     </div>
 
+    <div>
+      <label for="comment">Comment</label>
+      <textarea style="width: 100%; height: 90px" name="comment" required></textarea>
+    </div>
+
+    <button style="width: 100%; margin-top: 10px" type="submit">Submit</button>
+  </form>
 </div>
+
+<hr>
+
+<!-- all Reviews -->
+<h4>All Reviews</h4>
+<% for (review of listing.reviews) { %>
+  <div style="
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  ">
+    
+    <h5 style="
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+    ">
+      <%= review.comment %>
+    </h5>
+
+    <p style="
+      margin-top: 8px;
+      font-size: 14px;
+      color: #777;
+    ">
+      ⭐ Rating: <strong><%= review.rating %>/5</strong>
+    </p>
+    
+    <form action="/listings/<%= listing._id %>/reviews/<%=  review._id%>?_method=DELETE" method="post">
+      <button>Delete</button>
+    </form>
+
+  </div>
+<% } %>
+
 <!-- </html> -->
+
+
+
+
