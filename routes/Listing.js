@@ -33,6 +33,7 @@ router.post(
     });
     await newListing.save();
     console.log("Data Saver SucessFully");
+    req.flash("sucess","Listing created sucessfully");
     res.redirect("/listings");
   }),
 );
@@ -67,7 +68,8 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   let { id } = req.params;
   let deleteData = await Listing.findByIdAndDelete(id);
-  console.log(deleteData);
+  req.flash("deleted","Listing Deleted Sucessfully");
+  console.log(deleteData.title);
   res.redirect("/listings");
 });
 

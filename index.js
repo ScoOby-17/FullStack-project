@@ -10,9 +10,8 @@ const wrapAsync = require("./utilities/wrapAsync");
 const ExpressError = require("./utilities/ExpressError");
 const Reviews = require("./models/review.js");
 const { reviewSchema } = require("./Schema.js");
-
-const listings = require("./routes/Listing.js")
-const reviews = require("./routes/review.js")
+const session = require('express-session')
+var flash = require('connect-flash');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(flash());
 
 main()
   .then((res) => {
@@ -33,17 +33,37 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
+//create sessions
+const sessionOptions = {
+  secret: "mySuperSecretCode",
+  resave : false,
+  saveUninitialized: true,
+  cookie : {
+    expires : Date.now() + 7*24*60*60*1000,
+    maxAge : 7*24*60*60*1000,
+    httpOnly : true
+  }
+}
+app.use(session(sessionOptions))
 
 //home
 app.get("/", (req, res) => {
+  console.log(req.session)
   res.render("home.ejs");
 });
 
+//Routers
+const listings = require("./routes/Listing.js")
+const reviews = require("./routes/review.js")
+
+app.use((req,res,next)=>{
+  res.locals.sucess = req.flash("sucess");
+  res.locals.deleted = req.flash("deleted");
+  next()
+})
+
 app.use("/listings" , listings)
 app.use("/listings/:id/reviews" , reviews)
-
-
-
 
 //error Handling middleWares
 app.use((req, res) => {
@@ -55,8 +75,6 @@ app.use((err, req, res, next) => {
   console.log(err);
   return res.render("error.ejs", { err });
 });
-
-
 
 app.listen(8080, () => {
   console.log("server running on http://localhost:8080/listings");
