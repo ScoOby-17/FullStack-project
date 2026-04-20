@@ -24,7 +24,7 @@ app.use(flash());
 
 main()
   .then((res) => {
-    console.log("connected to database Wanderlust");
+    console.log("connected to database NexList");
   })
   .catch((err) => console.log(err));
 

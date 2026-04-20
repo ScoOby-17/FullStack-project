@@ -3,7 +3,7 @@ const data = require("./data")
 const Listing = require("../models/listing");
 
 main().then((res)=>{
-    console.log("connected to database Wanderlust")
+    console.log("connected to database NexList")
 }).catch(err => console.log(err));
 
 async function main() {
