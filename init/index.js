@@ -7,7 +7,7 @@ main().then((res)=>{
 }).catch(err => console.log(err));
 
 async function main() {
-    const MONGO_URL ="mongodb://127.0.0.1:27017/wanderlust";
+    const MONGO_URL ="mongodb://127.0.0.1:27017/NexList";
     await mongoose.connect(MONGO_URL);
 }
 
