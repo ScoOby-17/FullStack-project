@@ -12,6 +12,9 @@ const Reviews = require("./models/review.js");
 const { reviewSchema } = require("./Schema.js");
 const session = require('express-session')
 var flash = require('connect-flash');
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -44,7 +47,13 @@ const sessionOptions = {
     httpOnly : true
   }
 }
-app.use(session(sessionOptions))
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()))
 
 //home
 app.get("/", (req, res) => {
